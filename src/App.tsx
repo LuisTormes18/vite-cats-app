@@ -1,7 +1,10 @@
+import { Button, Container } from "react-bootstrap";
+
 export default function App() {
   return (
-    <div>
+    <Container>
       <h1>LTCats</h1>
-    </div>
+      <Button>Primary button</Button>
+    </Container>
   );
 }
