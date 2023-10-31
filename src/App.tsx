@@ -1,10 +1,10 @@
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { AppRouter } from "./components";
 
 export default function App() {
   return (
     <Container>
-      <h1>LTCats</h1>
-      <Button>Primary button</Button>
+      <AppRouter />
     </Container>
   );
 }
