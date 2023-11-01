@@ -68,7 +68,7 @@ export interface IBreed {
 
 export interface ICatsResponse {
   ok: boolean;
-  data: ICat[] | IBreed[] | IFavoriteApiResp[] | null;
+  data: ICat[] | IBreed[] | IFavoriteCat[] | null;
   message?: string | any;
   error?: Error | string;
 }
@@ -76,7 +76,7 @@ export interface IApiBreadsResponse {
   ok: boolean;
 }
 
-export interface IFavoriteApiResp {
+export interface IFavoriteCat {
   id: number;
   user_id: string;
   image_id: string;

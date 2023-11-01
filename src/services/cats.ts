@@ -1,5 +1,5 @@
 import { SUB_ID } from "../const";
-import type { IBreed, ICatsResponse, IFavoriteApiResp } from "../types";
+import type { IBreed, ICatsResponse } from "../types";
 import { fetchFromCatApi } from "../utils";
 
 export const vote = async (imageId: string, value: number) => {
@@ -26,7 +26,7 @@ export const setAsFavorite = async (imageId: string): Promise<ICatsResponse> => 
 
   return fetchFromCatApi({
     endpoint: "favourites",
-    method: method,
+    method,
     body: {
       image_id: imageId,
       sub_id: SUB_ID,
@@ -34,30 +34,15 @@ export const setAsFavorite = async (imageId: string): Promise<ICatsResponse> => 
   });
 };
 
-export const deleteFavorite = async (imageId: string): Promise<ICatsResponse> => {
+export const deleteFavorite = async (favouriteId: string): Promise<ICatsResponse> => {
   const method = "DELETE";
 
   return fetchFromCatApi({
-    endpoint: "favourites",
-    method: method,
-    body: {
-      image_id: imageId,
-    },
+    endpoint: `favourites/:${favouriteId}`,
+    method,
   });
 };
 export const getFavourites = async () => {
   const limit = 20;
-  const resp = await fetchFromCatApi({ endpoint: `favourites?limit=${limit}&sub_id=${SUB_ID}&order=DESC` });
-  const respData = resp.data as IFavoriteApiResp[];
-  const data =
-    resp.ok && !!respData
-      ? respData.map((item) => {
-          return {
-            id: item.id,
-            url: item.image.url,
-          };
-        })
-      : [];
-
-  return { ok: resp.ok, data };
+  return fetchFromCatApi({ endpoint: `favourites?limit=${limit}&sub_id=${SUB_ID}&order=DESC` });
 };
