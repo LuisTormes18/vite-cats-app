@@ -1,4 +1,6 @@
 import { Alert, Button, Form } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
+
 import { useForm } from "../hooks";
 import { loginUser } from "../services/auth";
 import { useAuthStore } from "../store/auth.store";
@@ -6,6 +8,7 @@ import { useAuthStore } from "../store/auth.store";
 export const LoginPage = () => {
   const { formData, handleInputChange, messageError, setMessageError } = useForm({ username: "", password: "" });
   const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   // handlers
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +32,7 @@ export const LoginPage = () => {
     }
 
     login(data);
-    window.location.href = "/profile";
+    navigate("/profile")
   };
 
   return (

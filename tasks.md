@@ -11,6 +11,7 @@ Se requiere una webapp desarrollada con ReactJs y Vite la cual contenga los sigu
 - Se deberá consumir el API Demo para esto es necesario registrarse para poder consumir los datos. https://thecatapi.com/
 - Se deberá construir un frontend utilizando Bootstrap con los componentes ya construidos esto para ahorrar tiempo
   (https://getbootstrap.com/docs/5.3/examples/ )
+
 - Las funcionalidades que se deben de agregar son las siguientes.
   - Vote (Votaciones)
   - Breeds (Razas de gatos)

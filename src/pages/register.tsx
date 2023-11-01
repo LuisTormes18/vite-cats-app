@@ -1,4 +1,5 @@
 import { Alert, Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "../hooks";
 import { registerUser } from "../services/auth";
 import { useAuthStore } from "../store/auth.store";
@@ -10,7 +11,7 @@ export const RegisterPage = () => {
     password: "",
   });
   const login = useAuthStore((state) => state.login);
-
+  const navigate = useNavigate();
   // handlers
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +40,7 @@ export const RegisterPage = () => {
     }
 
     login(data);
-    window.location.href = "/profile";
+    navigate("/profile");
   };
 
   return (
