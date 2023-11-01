@@ -1,6 +1,6 @@
 import type { IAuhResponse, ILoginUser, IUser } from "./../types.d";
 
-export const login = (user: ILoginUser): IAuhResponse => {
+export const loginUser = async (user: ILoginUser): Promise<IAuhResponse> => {
   const users = JSON.parse(localStorage.getItem("users") || "[]") as IUser[];
   const userResp = users.find((u) => u.username === user.username);
 
@@ -11,7 +11,7 @@ export const login = (user: ILoginUser): IAuhResponse => {
   return { ok: true, data: userResp, message: "Login success!" };
 };
 
-export const register = (user: IUser): IAuhResponse => {
+export const registerUser = async (user: IUser): Promise<IAuhResponse> => {
   const users = JSON.parse(localStorage.getItem("users") || "[]") as IUser[];
   const userResp = users.find((u) => u.username === user.username);
 

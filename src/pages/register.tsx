@@ -1,6 +1,7 @@
 import { Alert, Button, Form } from "react-bootstrap";
 import { useForm } from "../hooks";
-import { register } from "../services/auth";
+import { registerUser } from "../services/auth";
+import { useAuthStore } from "../store/auth.store";
 
 export const RegisterPage = () => {
   const { formData, handleInputChange, messageError, setMessageError } = useForm({
@@ -8,9 +9,10 @@ export const RegisterPage = () => {
     username: "",
     password: "",
   });
+  const login = useAuthStore((state) => state.login);
 
   // handlers
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { name, username, password } = formData;
@@ -29,13 +31,14 @@ export const RegisterPage = () => {
       return;
     }
 
-    const { ok, data, message } = register(formData);
+    const { ok, data, message } = await registerUser(formData);
 
     if (!ok) {
       setMessageError(message);
       return;
     }
 
+    login(data);
     window.location.href = "/profile";
   };
 

@@ -1,12 +1,14 @@
 import { Alert, Button, Form } from "react-bootstrap";
 import { useForm } from "../hooks";
-import { login } from "../services/auth";
+import { loginUser } from "../services/auth";
+import { useAuthStore } from "../store/auth.store";
 
 export const LoginPage = () => {
   const { formData, handleInputChange, messageError, setMessageError } = useForm({ username: "", password: "" });
+  const login = useAuthStore((state) => state.login);
 
   // handlers
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { username, password } = formData;
 
@@ -19,13 +21,14 @@ export const LoginPage = () => {
       return;
     }
 
-    const { ok, data, message } = login(formData);
+    const { ok, data, message } = await loginUser(formData);
 
     if (!ok) {
       setMessageError(message);
       return;
     }
 
+    login(data);
     window.location.href = "/profile";
   };
 
