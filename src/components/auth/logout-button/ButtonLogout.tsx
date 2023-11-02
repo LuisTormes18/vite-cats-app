@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/auth.store";
+import { useAuthStore } from "../../../store/auth.store";
 
 export const ButtonLogout = () => {
   const navigate = useNavigate();

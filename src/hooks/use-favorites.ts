@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getFavourites } from "../services/cats";
 import type { IFavoriteCat } from "../types";
 
-export const useFavorites = () => {
+export const useGetFavorites = () => {
   const [favoritesCats, setFavoritesCats] = useState<IFavoriteCat[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -10,7 +10,7 @@ export const useFavorites = () => {
     getFavourites()
       .then(({ ok, data }) => {
         if (ok) {
-          setFavoritesCats(data);
+          setFavoritesCats(data as IFavoriteCat[]);
         }
       })
       .finally(() => {

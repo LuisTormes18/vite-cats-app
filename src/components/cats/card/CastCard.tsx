@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { BsStar, BsStarFill } from "react-icons/bs";
-import { setAsFavorite } from "../../services/cats";
-import type { ICat } from "../../types";
+import { setAsFavorite } from "../../../services/cats";
+import type { ICat } from "../../../types";
 
 export const CastCard = ({ url, id }: ICat) => {
   const isFavorite = () => {

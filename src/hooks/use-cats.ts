@@ -1,36 +1,30 @@
 import { useEffect, useMemo, useState } from "react";
-import { getBreeds, searchImages } from "../services/cats";
-import type { IBreed, ICat } from "../types";
+import { searchImages } from "../services/cats";
+import { useCatsStore } from "../store/cats.store";
+import type { ICat } from "../types";
 
-export const useCats = () => {
+export const useGetCats = () => {
   const [cats, setCats] = useState<ICat[]>([]);
-  const [breeds, setBreeds] = useState<IBreed[]>([]);
-  const [breedSelected, setBreedSelected] = useState<IBreed["id"]>();
+  const [loading, setLoading] = useState(true);
+  const breedSelected = useCatsStore((state) => state.breedSelected);
 
   useEffect(() => {
-    getBreeds().then(({ ok, data }) => {
-      if (ok) {
-        setBreeds(data as IBreed[]);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    searchImages(breedSelected).then(({ ok, data }) => {
-      if (ok) {
-        setCats(data as ICat[]);
-      }
-    });
+    searchImages(breedSelected)
+      .then(({ ok, data }) => {
+        if (ok) {
+          setCats(data as ICat[]);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [breedSelected]);
-
-  const handleSelectBreed = (id: IBreed["id"]) => setBreedSelected(id);
 
   const filterCats = useMemo(() => cats, [cats]);
 
   return {
     filterCats,
-    breeds,
-    handleSelectBreed,
     breedSelected,
+    loading,
   };
 };

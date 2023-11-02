@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
-import { FavoritesGrid } from "../components/cats/FavoritesGrid";
-import { ImageGrid } from "../components/cats/ImageGrid";
+import { FavoritesGrid } from "../components/cats/favorite-grid/FavoritesGrid";
+import { ImageGrid } from "../components/cats/image-grid/ImageGrid";
 
 export const CatsPage = () => {
   const [key, setKey] = useState("image-grid");

@@ -2,9 +2,9 @@ import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { useAuthStore } from "../../store/auth.store";
-import { ButtonLogin } from "../ButtonLogin";
-import { ButtonLogout } from "../ButtonLogout";
-import { Logo } from "../Logo";
+import { ButtonLogin } from "../auth/login-button/ButtonLogin";
+import { ButtonLogout } from "../auth/logout-button/ButtonLogout";
+import { Logo } from "../shared";
 
 export const Header = () => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
