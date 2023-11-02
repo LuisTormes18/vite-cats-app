@@ -17,12 +17,6 @@ export interface IAuhResponse {
 
 // cats
 
-export interface ICat {
-  id: string;
-  url: string;
-  width?: number;
-  height?: number;
-}
 export interface IBreed {
   weight: {
     imperial: string;
@@ -68,7 +62,7 @@ export interface IBreed {
 
 export interface ICatsResponse {
   ok: boolean;
-  data: ICat[] | IBreed[] | IFavoriteCat[] | null;
+  data: ICatImage[] | IBreed[] | IFavoriteCat[] | null;
   message?: string | any;
   error?: Error | string;
 }
@@ -86,4 +80,10 @@ export interface IFavoriteCat {
     id: string;
     url: string;
   };
+}
+export interface ICatImage {
+  id: string;
+  url: string;
+  width?: number;
+  height?: number;
 }

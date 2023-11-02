@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { getFavourites } from "../services/cats";
+import { useCatsStore } from "../store";
 import type { IFavoriteCat } from "../types";
 
 export const useGetFavorites = () => {
-  const [favoritesCats, setFavoritesCats] = useState<IFavoriteCat[]>([]);
   const [loading, setLoading] = useState(true);
+  const setFavoritesCats = useCatsStore((state) => state.setFavoritesCats);
+  const favoritesCats = useCatsStore((state) => state.favoritesCats);
 
   useEffect(() => {
     getFavourites()

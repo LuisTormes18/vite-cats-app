@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { searchImages } from "../services/cats";
 import { useCatsStore } from "../store/cats.store";
-import type { ICat } from "../types";
+import type { ICatImage } from "../types";
 
 export const useGetCats = () => {
-  const [cats, setCats] = useState<ICat[]>([]);
+  const [cats, setCats] = useState<ICatImage[]>([]);
   const [loading, setLoading] = useState(true);
   const breedSelected = useCatsStore((state) => state.breedSelected);
 
@@ -12,7 +12,7 @@ export const useGetCats = () => {
     searchImages(breedSelected)
       .then(({ ok, data }) => {
         if (ok) {
-          setCats(data as ICat[]);
+          setCats(data as ICatImage[]);
         }
       })
       .finally(() => {

@@ -17,11 +17,14 @@ export const getBreeds = async () => fetchFromCatApi({ endpoint: "breeds" });
 
 export const searchImages = async (breedIds?: IBreed["id"]): Promise<ICatsResponse> => {
   const limit = 12;
-  const endpoint = breedIds ? `images/search?limit=${limit}&breed_ids=${breedIds}` : `images/search?limit=${limit}`;
+  const endpoint =
+    !breedIds || breedIds === "all"
+      ? `images/search?limit=${limit}`
+      : `images/search?limit=${limit}&breed_ids=${breedIds}`;
   return fetchFromCatApi({ endpoint });
 };
 
-export const setAsFavorite = async (imageId: string): Promise<ICatsResponse> => {
+export const setAsFavorite = async (imageId: string) => {
   const method = "POST";
 
   return fetchFromCatApi({
@@ -34,7 +37,7 @@ export const setAsFavorite = async (imageId: string): Promise<ICatsResponse> => 
   });
 };
 
-export const deleteFavorite = async (favouriteId: string): Promise<ICatsResponse> => {
+export const deleteFavorite = async (favouriteId: string) => {
   const method = "DELETE";
 
   return fetchFromCatApi({
