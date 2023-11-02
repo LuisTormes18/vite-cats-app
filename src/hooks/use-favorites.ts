@@ -18,7 +18,7 @@ export const useGetFavorites = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [setFavoritesCats]);
 
   return {
     favoritesCats,
